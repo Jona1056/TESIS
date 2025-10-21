@@ -17,7 +17,6 @@ El objetivo del proyecto es representar las relaciones existentes entre **leyes,
 
 ## Requisitos
 Para ejecutar el proyecto localmente se necesita tener instalado:
-- **Neo4j Desktop o AuraDB**
 - **Python 3.9+**
 - **Librerías:** `neo4j`, `pandas`
 
@@ -30,13 +29,5 @@ Para ejecutar el proyecto localmente se necesita tener instalado:
    ```
 4. Los datos de los archivos `.csv` serán cargados automáticamente y se crearán los nodos y relaciones correspondientes.
 
-## Consultas Cypher incluidas
-Las consultas incluidas permiten:
-- Crear y conectar nodos de **Delito**, **Pena**, **Juzgado** y **Caso**.  
-- Analizar la frecuencia de delitos, distribución geográfica, tipo de fallo, y relaciones entre leyes y penas.  
-- Generar visualizaciones interactivas mediante **Neo4j Bloom** o **NeoDash**.
 
-## Créditos
-Proyecto elaborado por **Jonatan Leonel García Arana**,  
-como parte del trabajo de tesis en la **Universidad de San Carlos de Guatemala**,  
-Facultad de Ingeniería, Escuela de Ciencias y Sistemas.
+
