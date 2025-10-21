@@ -2,7 +2,7 @@
 
 ## Descripción general
 Este repositorio contiene los archivos y el código fuente desarrollados para el proyecto de tesis titulado:  
-**“Propuesta de modelado del sistema judicial guatemalteco mediante el uso de Neo4j: Relaciones entre Leyes, Delitos y Juzgados.”**
+**“Propuesta de modelado del sistema judicial guatemalteco mediante el uso de Neo4j: Relaciones entre Leyes, Delitos, Penas y Juzgados.”**
 
 El objetivo del proyecto es representar las relaciones existentes entre **leyes, delitos, penas, juzgados y casos judiciales** utilizando una base de datos de grafos en **Neo4j**, con el fin de facilitar el análisis de patrones, redes delictivas y dinámicas judiciales en Guatemala.
 
