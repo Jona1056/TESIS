@@ -2,8 +2,8 @@ from neo4j import GraphDatabase
 import pandas as pd
 
 
-URI = "neo4j+s://05ad3b36.databases.neo4j.io"
-AUTH = ("neo4j", "qmgyxPlCluX4AFahwJYomx-mo3O7D8prOLm-x_eAg7I")
+URI = "URL"
+AUTH = ("usuario", "password")
 CSV_PATH = "Casos.csv"
 BATCH_SIZE = 1000
 #c30b6f3b
@@ -38,18 +38,13 @@ def load_cases():
 
     driver = GraphDatabase.driver(URI, auth=AUTH, connection_timeout=300000)
 
-    start = 80000
-
     with driver.session() as session:
-        for batch_no, i in enumerate(range(start, len(df), BATCH_SIZE),
-                                    start=(start // BATCH_SIZE) + 1):
+        for i in range(80, len(df), BATCH_SIZE):
             batch = df.iloc[i:i + BATCH_SIZE]
             data = batch.to_dict(orient="records")
             session.run(QUERY, batch=data)
-            print(f"✅ Batch {batch_no} ({len(batch)} filas) "
-                  f"filas {i}–{i + len(batch) - 1} cargado.")
+            print(f"✅ Batch {i // BATCH_SIZE + 1} ({len(batch)} filas) cargado.")
 
-
-        driver.close()
+    driver.close()
 
 load_cases()
