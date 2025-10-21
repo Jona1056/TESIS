@@ -13,8 +13,7 @@ El objetivo del proyecto es representar las relaciones existentes entre **leyes,
 - **Penas.csv** → Define los tipos de penas, rangos, unidades y observaciones.  
 - **delito.cypher**, **pena.cypher**, **juzgado.cypher**, **consultas_escenarios.cypher** → Conjunto de consultas Cypher utilizadas para crear nodos, relaciones y escenarios de análisis dentro de Neo4j.  
 - **main.py** → Script en Python encargado de automatizar la carga masiva de datos (casos) a la base de datos Neo4j. Permite procesar archivos extensos y dividirlos en lotes para su correcta importación.  
-- **SISTEMA_JUDICIAL_GUATEMALTECO_2025-10...** → Documento complementario con descripción técnica y visual del modelo implementado.  
-- **Readme.md** → Documento actual con la descripción y estructura del repositorio.
+
 
 ## Requisitos
 Para ejecutar el proyecto localmente se necesita tener instalado:
