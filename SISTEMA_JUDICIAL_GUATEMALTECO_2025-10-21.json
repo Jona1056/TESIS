@@ -1,0 +1,238 @@
+{
+  "version": 2,
+  "title": "SISTEMA JUDICIAL GUATEMALTECO",
+  "description": "",
+  "pages": [
+    {
+      "version": 1,
+      "title": "ANALISIS TOP 5 DELITOS",
+      "widgets": [
+        {
+          "version": 1,
+          "title": "Distribución por edad en los cinco delitos más frecuentes",
+          "w": 4,
+          "h": 4,
+          "x": 8,
+          "y": 4,
+          "meta": {},
+          "settings": {
+            "type": "bar",
+            "query": "MATCH (c:Caso)-[:RELACIONADO_CON]->(d:Delito)\nWHERE d.nombre IN ['Extorsión', 'Asociación ilícita', 'Obstrucción extorsiva de tránsito', 'Conspiración', 'Asesinato']\nRETURN\n  c.edad AS ClasificacionEdad,\n  count(CASE WHEN d.nombre = 'Extorsión' THEN 1 END) AS Extorsion,\n  count(CASE WHEN d.nombre = 'Asociación ilícita' THEN 1 END) AS Asociacion_Ilicita,\n  count(CASE WHEN d.nombre = 'Obstrucción extorsiva de tránsito' THEN 1 END) AS Obstruccion_Extorsiva,\n  count(CASE WHEN d.nombre = 'Conspiración' THEN 1 END) AS Conspiracion,\n  count(CASE WHEN d.nombre = 'Asesinato' THEN 1 END) AS Asesinato\nORDER BY ClasificacionEdad\n",
+            "valueKeys": [],
+            "orientation": "vertical",
+            "scaleType": "linear",
+            "showLegend": "auto",
+            "showDataZoom": "auto",
+            "version": 1,
+            "barArrangement": "grouped",
+            "enableDownloadImage": true
+          }
+        },
+        {
+          "version": 1,
+          "title": "Distribución por sexo en los cinco delitos más frecuentes",
+          "w": 5,
+          "h": 4,
+          "x": 0,
+          "y": 0,
+          "meta": {},
+          "settings": {
+            "type": "bar",
+            "query": "MATCH (c:Caso)-[:RELACIONADO_CON]->(d:Delito)\nWHERE d.nombre IN ['Extorsión', 'Asociación ilícita', 'Obstrucción extorsiva de tránsito', 'Conspiración', 'Asesinato']\nRETURN\n  c.sexo AS Sexo,\n  count(CASE WHEN d.nombre = 'Extorsión' THEN 1 END) AS Extorsion,\n  count(CASE WHEN d.nombre = 'Asociación ilícita' THEN 1 END) AS Asociacion_Ilicita,\n  count(CASE WHEN d.nombre = 'Obstrucción extorsiva de tránsito' THEN 1 END) AS Obstruccion_Extorsiva,\n  count(CASE WHEN d.nombre = 'Conspiración' THEN 1 END) AS Conspiracion,\n  count(CASE WHEN d.nombre = 'Asesinato' THEN 1 END) AS Asesinato\nORDER BY Sexo\n",
+            "valueKeys": [],
+            "orientation": "vertical",
+            "scaleType": "linear",
+            "showLegend": "auto",
+            "showDataZoom": "auto",
+            "version": 1,
+            "barArrangement": "grouped",
+            "enableDownloadImage": true
+          }
+        },
+        {
+          "version": 1,
+          "title": "Distribución por nacionalidad en los cinco delitos más frecuentes",
+          "w": 4,
+          "h": 4,
+          "x": 0,
+          "y": 4,
+          "meta": {},
+          "settings": {
+            "type": "bar",
+            "query": "MATCH (c:Caso)-[:RELACIONADO_CON]->(d:Delito)\nWHERE d.nombre IN ['Extorsión', 'Asociación ilícita', 'Obstrucción extorsiva de tránsito', 'Conspiración', 'Asesinato']\nRETURN\n  c.nacionalidad AS Nacionalidad,\n  count(CASE WHEN d.nombre = 'Extorsión' THEN 1 END) AS Extorsion,\n  count(CASE WHEN d.nombre = 'Asociación ilícita' THEN 1 END) AS Asociacion_Ilicita,\n  count(CASE WHEN d.nombre = 'Obstrucción extorsiva de tránsito' THEN 1 END) AS Obstruccion_Extorsiva,\n  count(CASE WHEN d.nombre = 'Conspiración' THEN 1 END) AS Conspiracion,\n  count(CASE WHEN d.nombre = 'Asesinato' THEN 1 END) AS Asesinato\nORDER BY Nacionalidad\n",
+            "valueKeys": [],
+            "orientation": "vertical",
+            "scaleType": "linear",
+            "showLegend": true,
+            "showDataZoom": "auto",
+            "version": 1,
+            "barArrangement": "grouped",
+            "enableDownloadImage": true
+          }
+        },
+        {
+          "version": 1,
+          "title": "Distribución mensual de casos judiciales registrados en 2024",
+          "w": 4,
+          "h": 4,
+          "x": 4,
+          "y": 8,
+          "meta": {},
+          "settings": {
+            "type": "line",
+            "query": "MATCH (:Caso)-[r:RELACIONADO_CON]->(:Delito)\nWHERE r.año = 2024 AND r.mes IS NOT NULL\nWITH \n  CASE toLower(r.mes)\n    WHEN 'enero' THEN 1\n    WHEN 'febrero' THEN 2\n    WHEN 'marzo' THEN 3\n    WHEN 'abril' THEN 4\n    WHEN 'mayo' THEN 5\n    WHEN 'junio' THEN 6\n    WHEN 'julio' THEN 7\n    WHEN 'agosto' THEN 8\n    WHEN 'septiembre' THEN 9\n    WHEN 'octubre' THEN 10\n    WHEN 'noviembre' THEN 11\n    WHEN 'diciembre' THEN 12\n    ELSE null\n  END AS MesNumero,\n  toLower(r.mes) AS Mes\nWHERE MesNumero IS NOT NULL\nWITH Mes, MesNumero, COUNT(*) AS TotalCasos\nORDER BY MesNumero\nRETURN Mes, TotalCasos\n",
+            "valueKeys": [],
+            "orientation": "vertical",
+            "scaleType": "linear",
+            "showLegend": "auto",
+            "showDataZoom": "auto",
+            "version": 1,
+            "enableDownloadImage": true
+          }
+        },
+        {
+          "version": 1,
+          "title": "Casos judiciales por año",
+          "w": 3,
+          "h": 4,
+          "x": 5,
+          "y": 0,
+          "meta": {},
+          "settings": {
+            "type": "line",
+            "query": "MATCH (:Caso)-[r:RELACIONADO_CON]->(:Delito)\nWHERE r.año IS NOT NULL\nRETURN toString(r.año) AS Año, count(*) AS TotalCasos\nORDER BY Año\n",
+            "dimensionKey": "Año",
+            "valueKeys": [
+              "TotalCasos"
+            ],
+            "orientation": "vertical",
+            "scaleType": "linear",
+            "showLegend": false,
+            "showDataZoom": false,
+            "version": 1,
+            "enableDownloadImage": true
+          }
+        },
+        {
+          "version": 1,
+          "title": "Distribución mensual de casos judiciales registrados en 2023",
+          "w": 4,
+          "h": 4,
+          "x": 0,
+          "y": 8,
+          "meta": {},
+          "settings": {
+            "type": "line",
+            "query": "MATCH (:Caso)-[r:RELACIONADO_CON]->(:Delito)\nWHERE r.año = 2023 AND r.mes IS NOT NULL\nWITH \n  CASE toLower(r.mes)\n    WHEN 'enero' THEN 1\n    WHEN 'febrero' THEN 2\n    WHEN 'marzo' THEN 3\n    WHEN 'abril' THEN 4\n    WHEN 'mayo' THEN 5\n    WHEN 'junio' THEN 6\n    WHEN 'julio' THEN 7\n    WHEN 'agosto' THEN 8\n    WHEN 'septiembre' THEN 9\n    WHEN 'octubre' THEN 10\n    WHEN 'noviembre' THEN 11\n    WHEN 'diciembre' THEN 12\n    ELSE null\n  END AS MesNumero,\n  toLower(r.mes) AS Mes\nWHERE MesNumero IS NOT NULL\nWITH Mes, MesNumero, COUNT(*) AS TotalCasos\nORDER BY MesNumero\nRETURN Mes, TotalCasos\n",
+            "valueKeys": [],
+            "orientation": "vertical",
+            "scaleType": "linear",
+            "showLegend": "auto",
+            "showDataZoom": "auto",
+            "version": 1,
+            "enableDownloadImage": true
+          }
+        },
+        {
+          "version": 1,
+          "title": "Distribución por rol en los cinco delitos más frecuentes",
+          "w": 4,
+          "h": 4,
+          "x": 4,
+          "y": 4,
+          "meta": {},
+          "settings": {
+            "type": "bar",
+            "query": "MATCH (c:Caso)-[r:RELACIONADO_CON]->(d:Delito)\nWHERE d.nombre IN ['Extorsión', 'Asociación ilícita', 'Obstrucción extorsiva de tránsito', 'Conspiración', 'Asesinato']\nRETURN\n  r.rol AS Rol,\n  count(CASE WHEN d.nombre = 'Extorsión' THEN 1 END) AS Extorsion,\n  count(CASE WHEN d.nombre = 'Asociación ilícita' THEN 1 END) AS Asociacion_Ilicita,\n  count(CASE WHEN d.nombre = 'Obstrucción extorsiva de tránsito' THEN 1 END) AS Obstruccion_Extorsiva,\n  count(CASE WHEN d.nombre = 'Conspiración' THEN 1 END) AS Conspiracion,\n  count(CASE WHEN d.nombre = 'Asesinato' THEN 1 END) AS Asesinato\nORDER BY Rol\n",
+            "valueKeys": [],
+            "orientation": "horizontal",
+            "scaleType": "linear",
+            "showLegend": "auto",
+            "showDataZoom": "auto",
+            "version": 1,
+            "barArrangement": "grouped",
+            "enableDownloadImage": true
+          }
+        },
+        {
+          "version": 1,
+          "title": "Distribución mensual de casos judiciales registrados en 2022",
+          "w": 4,
+          "h": 4,
+          "x": 8,
+          "y": 8,
+          "meta": {},
+          "settings": {
+            "type": "line",
+            "query": "MATCH (:Caso)-[r:RELACIONADO_CON]->(:Delito)\nWHERE r.año = 2022 AND r.mes IS NOT NULL\nWITH \n  CASE toLower(r.mes)\n    WHEN 'enero' THEN 1\n    WHEN 'febrero' THEN 2\n    WHEN 'marzo' THEN 3\n    WHEN 'abril' THEN 4\n    WHEN 'mayo' THEN 5\n    WHEN 'junio' THEN 6\n    WHEN 'julio' THEN 7\n    WHEN 'agosto' THEN 8\n    WHEN 'septiembre' THEN 9\n    WHEN 'octubre' THEN 10\n    WHEN 'noviembre' THEN 11\n    WHEN 'diciembre' THEN 12\n    ELSE null\n  END AS MesNumero,\n  toLower(r.mes) AS Mes\nWHERE MesNumero IS NOT NULL\nWITH Mes, MesNumero, COUNT(*) AS TotalCasos\nORDER BY MesNumero\nRETURN Mes, TotalCasos\n",
+            "valueKeys": [],
+            "orientation": "vertical",
+            "scaleType": "linear",
+            "showLegend": "auto",
+            "showDataZoom": "auto",
+            "version": 1,
+            "enableDownloadImage": true
+          }
+        },
+        {
+          "version": 1,
+          "title": "Casos judiciales registrados por mes entre 2022 y 2024",
+          "w": 4,
+          "h": 4,
+          "x": 0,
+          "y": 12,
+          "meta": {},
+          "settings": {
+            "type": "line",
+            "query": "MATCH (:Caso)-[r:RELACIONADO_CON]->(:Delito)\nWHERE r.año IS NOT NULL AND r.mes IS NOT NULL\nWITH \n  r.año AS Año,\n  CASE toLower(r.mes)\n    WHEN 'enero' THEN 1\n    WHEN 'febrero' THEN 2\n    WHEN 'marzo' THEN 3\n    WHEN 'abril' THEN 4\n    WHEN 'mayo' THEN 5\n    WHEN 'junio' THEN 6\n    WHEN 'julio' THEN 7\n    WHEN 'agosto' THEN 8\n    WHEN 'septiembre' THEN 9\n    WHEN 'octubre' THEN 10\n    WHEN 'noviembre' THEN 11\n    WHEN 'diciembre' THEN 12\n    ELSE null\n  END AS MesNumero\nWHERE MesNumero IS NOT NULL\nWITH Año, MesNumero, COUNT(*) AS TotalCasos\nWITH \n  toString(Año) + '-' + \n  CASE WHEN MesNumero < 10 THEN '0' + toString(MesNumero) ELSE toString(MesNumero) END AS Fecha,\n  TotalCasos\nRETURN Fecha, TotalCasos\nORDER BY Fecha\n",
+            "valueKeys": [],
+            "orientation": "vertical",
+            "scaleType": "linear",
+            "showLegend": "auto",
+            "showDataZoom": "auto",
+            "version": 1,
+            "enableDownloadImage": true
+          }
+        },
+        {
+          "version": 1,
+          "title": "Leyes más frecuentemente aplicadas en delitos procesados",
+          "w": 4,
+          "h": 4,
+          "x": 8,
+          "y": 0,
+          "meta": {},
+          "settings": {
+            "type": "pie",
+            "query": "MATCH (:Caso)-[:RELACIONADO_CON]->(d:Delito)-[:REGULADO_POR]->(l:Ley)\nRETURN l.nombre AS Ley, COUNT(*) AS Frecuencia\nORDER BY Frecuencia DESC\n",
+            "version": 1,
+            "showLegend": "auto",
+            "enableDownloadImage": true
+          }
+        }
+      ]
+    }
+  ],
+  "params": [
+    {
+      "version": 1,
+      "key": "caso_departamento"
+    },
+    {
+      "version": 1,
+      "key": "delito_nombre"
+    },
+    {
+      "version": 1,
+      "key": "regulado_por_capitulo"
+    },
+    {
+      "version": 1,
+      "key": "caso_departamento"
+    },
+    {
+      "version": 1,
+      "key": "caso_departamento"
+    }
+  ]
+}
